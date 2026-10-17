@@ -28,12 +28,6 @@ Open the settings window with **F11**. Every setting has a tooltip and a reset b
 - **Frame rate limit**: the game caps itself at 60 fps. `FrameRateLimit` in the config can leave that (0), remove the limit (-1) or set a number.
 - Settings are saved in `BepInEx\config\mallahowl.ppenhancer.cfg`. Delete that file to start over.
 
-## Known limits
-- The home screen camera (`HomeScreen_Camera`) is not processed by default; add it to `Cameras` in the config to try it.
-- Only Direct3D 11 is supported. Only the main tactical camera and the geoscape camera are processed.
-- With the game's own anti-aliasing option, the mod turns the game's AA off while DLSS runs (setting `DisableGameAA`).
-- The mod has been tested on one machine; please report problems with your GPU, driver and what you were doing.
-
 ## Troubleshooting
 The log is `BepInEx\plugins\PPEnhancer\PPUpscaler.log` (and BepInEx's own `BepInEx\LogOutput.log`). Include them in a bug report.
 
