@@ -1,0 +1,15 @@
+bin/
+obj/
+dist/
+local.props
+release-forbidden.txt
+*.log
+*.old
+*.dll
+*.pdb
+*.lib
+*.exp
+*.obj
+nvngx_dlss.dll
+ThirdParty/
+DLSS/

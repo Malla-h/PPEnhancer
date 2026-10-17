@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Machine-specific settings go in local.props (git-ignored), e.g. <PPDir>D:\SteamLibrary\steamapps\common\Phoenix Point</PPDir>.
+       Alternatively set the PP_DIR environment variable or pass -p:PPDir=... -->
+  <Import Project="local.props" Condition="Exists('local.props')" />
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>PPUpscaler.Core</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <DebugType Condition="'$(Configuration)' == 'Release'">none</DebugType>
+    <PPDir Condition="'$(PPDir)' == '' And '$(PP_DIR)' != ''">$(PP_DIR)</PPDir>
+    <PPDir Condition="'$(PPDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Phoenix Point</PPDir>
+    <Managed>$(PPDir)\PhoenixPointWin64_Data\Managed</Managed>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="$(Managed)\UnityEngine*.dll"><Private>false</Private></Reference>
+    <Reference Include="$(Managed)\Unity.Postprocessing.Runtime.dll"><Private>false</Private></Reference>
+    <Reference Include="$(Managed)\Assembly-CSharp.dll"><Private>false</Private></Reference>
+    <!-- BepInEx 5 (installed in the game folder) provides the plugin base class and HarmonyX (0Harmony). -->
+    <Reference Include="$(PPDir)\BepInEx\core\BepInEx.dll"><Private>false</Private></Reference>
+    <Reference Include="$(PPDir)\BepInEx\core\0Harmony.dll"><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

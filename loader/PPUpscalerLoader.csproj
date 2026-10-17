@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The BepInEx plugin (PPUpscaler.dll). It only loads PPUpscaler.Core.dll, the actual mod, and with HotReload on reloads it when the file changes. -->
+  <Import Project="local.props" Condition="Exists('local.props')" />
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>PPUpscaler</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <DebugType Condition="'$(Configuration)' == 'Release'">none</DebugType>
+    <PPDir Condition="'$(PPDir)' == '' And '$(PP_DIR)' != ''">$(PP_DIR)</PPDir>
+    <PPDir Condition="'$(PPDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Phoenix Point</PPDir>
+    <Managed>$(PPDir)\PhoenixPointWin64_Data\Managed</Managed>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="$(Managed)\UnityEngine.dll"><Private>false</Private></Reference>
+    <Reference Include="$(Managed)\UnityEngine.CoreModule.dll"><Private>false</Private></Reference>
+    <Reference Include="$(PPDir)\BepInEx\core\BepInEx.dll"><Private>false</Private></Reference>
+    <Reference Include="$(PPDir)\BepInEx\core\Mono.Cecil.dll"><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>
